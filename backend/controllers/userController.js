@@ -1,3 +1,4 @@
+import { validationResult } from 'express-validator';
 import User from '../models/userModel.js';
 import generateToken from '../utils/generateToken.js';
 import bcrypt from 'bcryptjs';
