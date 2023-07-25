@@ -3,6 +3,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { FaUser } from 'react-icons/fa';
 import { FaSignInAlt } from 'react-icons/fa';
 import { FaSignOutAlt } from 'react-icons/fa';
+import { FaNewspaper } from 'react-icons/fa';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useLogout } from '../hooks/useLogout';
 
@@ -20,17 +21,24 @@ const Header = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
               {user ? (
-                <NavDropdown title={user.username} id="username">
-                  <LinkContainer to="/profile">
-                    <NavDropdown.Item>
-                      <FaUser />
-                      {'  '} Profile
-                    </NavDropdown.Item>
+                <>
+                  <LinkContainer to="/add-post">
+                    <Nav.Link>
+                      <FaNewspaper /> Add Post
+                    </Nav.Link>
                   </LinkContainer>
-                  <NavDropdown.Item onClick={logout}>
-                    <FaSignOutAlt /> {'  '}Logout
-                  </NavDropdown.Item>
-                </NavDropdown>
+                  <NavDropdown title={user.username} id="username">
+                    <LinkContainer to="/profile">
+                      <NavDropdown.Item>
+                        <FaUser />
+                        {'  '} Profile
+                      </NavDropdown.Item>
+                    </LinkContainer>
+                    <NavDropdown.Item onClick={logout}>
+                      <FaSignOutAlt /> {'  '}Logout
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                </>
               ) : (
                 <LinkContainer to="/login">
                   <Nav.Link>

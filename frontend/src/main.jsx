@@ -14,7 +14,14 @@ import {
 import LoginPage from './pages/LoginPage.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
 import MainPage from './pages/MainPage.jsx';
+import ProfilePage from './pages/ProfilePage.jsx';
 import { QueryClientProvider } from '@tanstack/react-query';
+import PrivateRoute from './pages/PrivateRoute';
+import ProfileDetailsPage from './pages/ProfileDetailsPage';
+
+import UserBlogPostsPage from './pages/UserBlogPostsPage';
+import AddBlogPostPage from './pages/AddBlogPostPage';
+import BlogPage from './pages/BlogPage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +29,14 @@ const router = createBrowserRouter(
       <Route path="/" index element={<MainPage />} />{' '}
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
+      <Route path="/blog/:id" element={<BlogPage />} />
+      <Route path="" element={<PrivateRoute />}>
+        <Route path="/profile" element={<ProfilePage />}>
+          <Route path="/profile/details" element={<ProfileDetailsPage />} />
+          <Route path="/profile/posts" element={<UserBlogPostsPage />} />
+        </Route>
+        <Route path="/add-post" element={<AddBlogPostPage />} />
+      </Route>
     </Route>
   )
 );

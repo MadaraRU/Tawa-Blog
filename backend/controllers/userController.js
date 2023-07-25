@@ -73,27 +73,46 @@ const getUserProfile = asyncHandler(async (req, res) => {
 const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
 
-  if (user) {
-    user.username = req.body.username || user.username;
-    user.firstName = req.body.firstName || user.firstName;
-    user.lastName = req.body.lastName || user.lastName;
-    user.email = req.body.email || user.email;
-    if (req.body.password) {
-      user.password = req.body.password;
-    }
-
-    const updatedUser = await user.save();
-
-    res.json({
-      firstName: user.firstName,
-      lastName: user.lastName,
-      username: user.username,
-      email: user.email,
-    });
-  } else {
+  if (!user) {
     res.status(404);
     throw new Error('User not found');
   }
+  // Check if the username has been changed and if it already exists in the database
+  if (req.body.username !== user.username) {
+    const usernameExists = await User.findOne({ username: req.body.username });
+    if (usernameExists) {
+      res.status(400);
+      throw new Error('Username already exists');
+    }
+  }
+
+  // Check if the email has been changed and if it already exists in the database
+  if (req.body.email !== user.email) {
+    const emailExists = await User.findOne({ email: req.body.email });
+    if (emailExists) {
+      res.status(400);
+      throw new Error('Email already exists');
+    }
+  }
+
+  user.username = req.body.username || user.username;
+  user.firstName = req.body.firstName || user.firstName;
+  user.lastName = req.body.lastName || user.lastName;
+  user.email = req.body.email || user.email;
+  if (req.body.password) {
+    user.password = req.body.password;
+  }
+
+  const updatedUser = await user.save();
+
+  res.json({
+    _id: user.id,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    username: user.username,
+    email: user.email,
+    token: generateToken(user._id),
+  });
 });
 
 export { register, login, getUserProfile, updateUserProfile };
