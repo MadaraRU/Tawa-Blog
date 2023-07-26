@@ -1,3 +1,30 @@
 main {
   min-height: 80vh;
 }
+
+.blog-title {
+  height: 2.5em; /* Set a fixed height */
+  overflow: hidden; /* Hide overflow content */
+  text-overflow: ellipsis; /* Add ellipsis for long text */
+  white-space: nowrap; /* Prevent wrapping */
+}
+
+.custom-link {
+  text-decoration: none;
+}
+
+.comments {
+  margin-top: 30px;
+}
+
+.comments h2 {
+  font-size: 24px;
+}
+
+.comments button {
+  margin-top: 10px;
+}
+
+.custom-icons {
+  cursor: pointer;
+}

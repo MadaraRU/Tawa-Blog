@@ -6,11 +6,13 @@ import {
   AiOutlineDislike,
   AiOutlineComment,
 } from 'react-icons/ai';
+import { useBlog } from '../hooks/useBlog';
 
-const BlogCard = ({ blog }) => {
+const MyBlogCard = ({ blog }) => {
   const { _id, title, author, content, likes, dislikes, comments, createdAt } =
     blog;
 
+  const { deleteBlog, isLoadingDelete } = useBlog();
   const preview =
     content?.length > 100 ? content.substring(0, 100) + '...' : content;
 
@@ -27,6 +29,17 @@ const BlogCard = ({ blog }) => {
           <Link to={`/blog/${_id}`}>
             <Button variant="outline-primary">Read More</Button>
           </Link>
+          <Link to={`/blog/${_id}/edit-post`} className="mx-2">
+            <Button variant="outline-info">Edit</Button>
+          </Link>
+
+          <Button
+            variant="outline-danger"
+            onClick={async () => await deleteBlog(_id)}
+            disabled={isLoadingDelete}
+          >
+            {isLoadingDelete ? 'Deleting...' : 'Delete'}
+          </Button>
         </div>
 
         <div className="d-flex justify-content-between align-items-center mt-3">
@@ -41,4 +54,4 @@ const BlogCard = ({ blog }) => {
   );
 };
 
-export default BlogCard;
+export default MyBlogCard;

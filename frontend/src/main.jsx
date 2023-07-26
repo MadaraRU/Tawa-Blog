@@ -22,6 +22,7 @@ import ProfileDetailsPage from './pages/ProfileDetailsPage';
 import UserBlogPostsPage from './pages/UserBlogPostsPage';
 import AddBlogPostPage from './pages/AddBlogPostPage';
 import BlogPage from './pages/BlogPage';
+import EditBlogPostPage from './pages/EditBlogPostPage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,9 +31,10 @@ const router = createBrowserRouter(
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/blog/:id" element={<BlogPage />} />
+      <Route path="/blog/:id/edit-post" element={<EditBlogPostPage />} />
       <Route path="" element={<PrivateRoute />}>
         <Route path="/profile" element={<ProfilePage />}>
-          <Route path="/profile/details" element={<ProfileDetailsPage />} />
+          <Route path="/profile" index element={<ProfileDetailsPage />} />
           <Route path="/profile/posts" element={<UserBlogPostsPage />} />
         </Route>
         <Route path="/add-post" element={<AddBlogPostPage />} />

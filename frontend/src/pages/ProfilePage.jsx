@@ -4,16 +4,11 @@ import { Outlet } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 
 const ProfilePage = () => {
-  const { profileData, isLoading, error } = useUser();
   return (
     <>
-      <Nav
-        className="justify-content-md-center"
-        variant="tabs"
-        defaultActiveKey="/profile"
-      >
+      <Nav className="justify-content-md-center" variant="tabs">
         <Nav.Item>
-          <LinkContainer to="/profile/details">
+          <LinkContainer to="/profile">
             <Nav.Link>My Details</Nav.Link>
           </LinkContainer>
         </Nav.Item>

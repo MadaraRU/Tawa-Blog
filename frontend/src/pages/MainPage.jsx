@@ -27,12 +27,13 @@ const MainPage = () => {
         </Row>
       )}
 
-      {/* Mapping of blogPosts will be added here */}
       <Row className="justify-content-md-center mt-5">
         <Col sm={12} md={7}>
-          {blogPosts.map((post) => (
-            <BlogCard key={post._id} blog={post} />
-          ))}
+          {blogPosts
+            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+            .map((post) => (
+              <BlogCard key={post._id} blog={post} />
+            ))}
         </Col>
       </Row>
     </Container>

@@ -25,7 +25,7 @@ import {
 const router = express.Router();
 
 router.get('/', getAllBlogs);
-router.get('/me', protect, getUserBlog);
+router.get('/my-blogs', protect, getUserBlog);
 router.post('/', protect, validateMiddleware(createBlogValidator), addBlog);
 router
   .route('/:id')

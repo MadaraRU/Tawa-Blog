@@ -21,6 +21,8 @@ const AddBlogPostPage = () => {
       .map((keyword) => keyword.trim());
 
     await addBlog({ title, content, keywords: keywordsArray });
+
+    formik.resetForm();
   };
 
   const formik = useFormik({
