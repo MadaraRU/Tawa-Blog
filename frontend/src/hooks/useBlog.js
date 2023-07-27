@@ -7,6 +7,7 @@ const API_URL = 'http://localhost:5000/api/blog';
 
 export const useBlog = () => {
   const { user } = useAuthContext();
+
   const headers = {
     'Content-Type': 'application/json',
     Authorization: `Bearer ${user?.token}`,

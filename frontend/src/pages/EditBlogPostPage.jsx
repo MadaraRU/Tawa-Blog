@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import FormContainer from '../components/FormContainer';
 import { useBlog, useBlogById } from '../hooks/useBlog';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 
 const EditBlogPostPage = () => {
   const { id } = useParams();
   const { updateBlog, isLoadingUpdate } = useBlog(); // Destructure isLoadingUpdate from useBlog hook
   const { blogPost, isLoading } = useBlogById(id);
+  const navigate = useNavigate();
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -31,6 +32,8 @@ const EditBlogPostPage = () => {
       blogId: id,
       updatedData: { title, content, keywords: keywordsArray },
     });
+
+    navigate('/profile/posts');
   };
 
   return (
