@@ -15,7 +15,8 @@ const App = () => {
           <Outlet />
         </Container>
       </main>
-      <ReactQueryDevtools />
+      {/* <ReactQueryDevtools /> */}{' '}
+      {/* remove comment if you want to use React query devtools*/}
     </>
   );
 };
