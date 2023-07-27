@@ -7,7 +7,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 
 const EditBlogPostPage = () => {
   const { id } = useParams();
-  const { updateBlog, isLoadingUpdate } = useBlog(); // Destructure isLoadingUpdate from useBlog hook
+  const { updateBlog, isLoadingUpdate } = useBlog();
   const { blogPost, isLoading } = useBlogById(id);
   const navigate = useNavigate();
 
