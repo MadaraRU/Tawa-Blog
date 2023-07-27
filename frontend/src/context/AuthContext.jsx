@@ -26,7 +26,7 @@ export const AuthContextProvider = ({ children }) => {
     if (user) {
       dispatch({ type: 'LOGIN', payload: user });
     } else {
-      dispatch({ type: 'LOGOUT' }); // If no user found, set loading to false here
+      dispatch({ type: 'LOGOUT' });
     }
   }, []);
 
